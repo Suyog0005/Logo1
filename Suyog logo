@@ -1,0 +1,18 @@
+import matplotlib.pyplot as plt
+
+def create_logo(text, font, symbol_color, background_color):
+    fig, ax = plt.subplots()
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 10)
+    ax.set_facecolor(background_color)
+    ax.text(5, 5, text, fontsize=24, fontname=font, color=symbol_color, ha='center', va='center')
+    ax.add_patch(plt.Rectangle((3, 3), 4, 4, linewidth=2, edgecolor=symbol_color, facecolor='none'))
+    plt.axis('off')
+    plt.show()
+
+text = "YourText"
+font = "Didot"
+symbol_color = "navy"
+background_color = "white"
+
+create_logo(text, font, symbol_color, background_color)

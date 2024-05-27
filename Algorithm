@@ -1,0 +1,22 @@
+function find_route(start_city):
+    visited = {}
+    route = []
+
+    // Define Graph and Add Connections
+    graph = Graph()
+    for each ticket in tickets:
+        graph.add_edge(ticket.source, ticket.destination)
+
+    // Depth-First Search
+    dfs(start_city, visited, route)
+
+    return route
+
+function dfs(city, visited, route):
+    visited[city] = true
+    route.append(city)
+
+    if city in graph:
+        for each neighbor in graph[city]:
+            if neighbor not visited:
+                dfs(neighbor, visited, route)

@@ -1,0 +1,49 @@
+class Graph:
+    def __init__(self):
+        self.adj_list = {}
+
+    def add_edge(self, src, dest):
+        if src not in self.adj_list:
+            self.adj_list[src] = []
+        self.adj_list[src].append(dest)
+
+    def dfs(self, start, visited, route):
+        visited[start] = True
+        route.append(start)
+        if start in self.adj_list:
+            for neighbor in self.adj_list[start]:
+                if not visited[neighbor]:
+                    self.dfs(neighbor, visited, route)
+
+    def find_route(self, start):
+        visited = {city: False for city in self.adj_list}
+        route = []
+        self.dfs(start, visited, route)
+        return route
+
+
+def main():
+    cities = ["Amsterdam", "Kiev", "Zurich", "Prague", "Berlin", "Barcelona"]
+    tickets = [
+        ("Paris", "Skopje"),
+        ("Zurich", "Amsterdam"),
+        ("Prague", "Zurich"),
+        ("Barcelona", "Berlin"),
+        ("Kiev", "Prague"),
+        ("Skopje", "Paris"),
+        ("Amsterdam", "Barcelona"),
+        ("Berlin", "Kiev"),
+        ("Berlin", "Amsterdam")
+    ]
+
+    g = Graph()
+    for src, dest in tickets:
+        g.add_edge(src, dest)
+
+    start_city = "Kiev"
+    route = g.find_route(start_city)
+    print("Route traveled by your son:", route)
+
+
+if __name__ == "__main__":
+    main()
